@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Premium Auction List · NM Auction</title>
+<meta name="description" content="Unlock the full private auction list: exact addresses with Google Maps, winning price calculator, bank, price-cut history. RM50 for 30 days.">
+<meta property="og:type" content="website"><meta property="og:title" content="Premium Auction List · NM Auction"><meta property="og:description" content="Exact addresses with Google Maps, winning price calculator, bank, price-cut history. RM50 for 30 days, no auto-renewal."><meta property="og:url" content="https://clientnmauction.lelongbidgroup.com/premium/"><meta property="og:image" content="https://lelongbidgroup.com/img/og-lelong.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f2a44">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+/* Premium landing page of the trial sites (28/10/2026 redesign): palette A of the members' site (navy + gold on ivory).
+   Order: hero that sells Premium with today's numbers (trial/stats.json), see the difference, what Premium gives, the three plans,
+   the comparison, who is behind the list, payment (with the save-the-QR fix for phones), questions. */
+:root{
+  --bg:#f6f4ef;--surface:#ffffff;--fg:#13212e;--muted:#56636f;--line:#e4dfd3;
+  --navy:#0f2a44;--navy2:#173d63;--gold:#c9a227;--gold-fg:#1a1405;--prem:#8a6512;--prem-bg:#fbf3dc;
+  --save:#1d6b3a;--ok-bg:#e8f3ec;--lock:#8b96a1;--wa:#1f8a4c;
+  --display:'Fraunces',Georgia,serif;--sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b1520;--surface:#12202d;--fg:#e8edf2;--muted:#a7b4c1;--line:#253649;
+  --navy:#0f2a44;--navy2:#1b4670;--gold:#d9b54a;--gold-fg:#1a1405;--prem:#e6c25a;--prem-bg:#3a2e10;
+  --save:#7fd39a;--ok-bg:#16301f;--lock:#7d8a97;--wa:#2a9d5c;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1520;--surface:#12202d;--fg:#e8edf2;--muted:#a7b4c1;--line:#253649;
+  --navy:#0f2a44;--navy2:#1b4670;--gold:#d9b54a;--gold-fg:#1a1405;--prem:#e6c25a;--prem-bg:#3a2e10;
+  --save:#7fd39a;--ok-bg:#16301f;--lock:#7d8a97;--wa:#2a9d5c;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:1.02rem;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mono{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--navy);color:var(--gold);font-family:var(--display);font-weight:700;font-size:1rem;border:1.5px solid var(--gold)}
+.brand b{display:block;font-size:.95rem;line-height:1.2}.brand small{display:block;color:var(--muted);font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lang{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;flex:none}
+.lang button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:.82rem;padding:6px 12px;border-radius:999px;cursor:pointer;min-height:40px}
+.lang button[aria-pressed="true"]{background:var(--navy);color:#fff}
+
+.hero{background:linear-gradient(155deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;border-radius:22px;padding:26px 20px 22px;border:1px solid rgba(217,181,74,.35);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 92% 0%,rgba(217,181,74,.22),transparent 45%);pointer-events:none}
+.hero>*{position:relative}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ecd27e}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(1.65rem,6.2vw,2.3rem);line-height:1.15;margin:8px 0 10px;text-wrap:balance}
+.hero p{margin:0;opacity:.92;max-width:38ch}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:18px}@media (max-width:480px){.proof{grid-template-columns:1fr 1fr}}
+.proof div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px;min-width:0}
+.proof b{display:block;font-family:var(--display);font-size:1.35rem;color:#ecd27e;line-height:1.1}
+.proof span{display:block;font-size:.74rem;line-height:1.3;opacity:.9}
+.priceline{margin-top:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.priceline b{font-family:var(--display);font-size:2.3rem;line-height:1;color:#fff}
+.priceline span{font-size:.92rem;opacity:.92}
+.cta{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:10px 18px;border-radius:14px;font-weight:700;font-size:1.04rem;text-decoration:none;border:2px solid transparent;text-align:center;cursor:pointer;font-family:inherit}
+.btn.gold{background:var(--gold);color:var(--gold-fg);border-color:var(--gold)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn.line{background:var(--surface);color:var(--fg);border-color:var(--line)}
+.btn.wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+.btn.sm{min-height:44px;font-size:.95rem;padding:8px 14px}
+
+section{margin-top:30px}
+h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.lead{color:var(--muted);margin:0 0 14px;max-width:60ch}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--prem);background:var(--prem-bg);border-radius:6px;padding:2px 8px}
+
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.diff{grid-template-columns:1fr}}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ex.prem{border:2px solid var(--gold);box-shadow:0 8px 24px -16px rgba(15,42,68,.45)}
+.ex h3{margin:0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ex.prem h3{color:var(--prem)}
+.ex .addr{font-weight:700;line-height:1.35}
+.ex dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:.9rem}
+.ex dt{color:var(--muted)}.ex dd{margin:0;font-weight:700;text-align:right}
+.lockv{color:var(--lock);font-weight:600}.savev{color:var(--save)}
+.example{font-size:.78rem;color:var(--muted)}
+
+.groups{display:flex;flex-direction:column;gap:12px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.group h3{margin:0 0 8px;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.group h3 i{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--navy);color:var(--gold);font-style:normal;font-family:var(--display);font-size:.9rem;border:1px solid var(--gold)}
+.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.ticks li{display:flex;gap:10px;align-items:flex-start}
+.ticks li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%231a1405' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.ticks b{display:block}.ticks span{color:var(--muted);font-size:.92rem}
+.value{margin-top:12px;background:var(--ok-bg);color:var(--fg);border-radius:14px;padding:12px 14px;font-size:.95rem}
+.value b{color:var(--save)}
+
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+@media (max-width:680px){.plans{grid-template-columns:1fr;gap:16px}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.plan.rec{border:2px solid var(--gold);box-shadow:0 10px 28px -18px rgba(15,42,68,.55)}
+.plan .rib{position:absolute;top:-11px;left:16px;background:var(--gold);color:var(--gold-fg);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+.plan.vip .rib{background:var(--navy);color:#ecd27e;border:1px solid var(--gold)}
+.plan h3{margin:0;font-size:1.05rem}
+.plan .pr{display:flex;align-items:baseline;gap:6px}.plan .pr b{font-family:var(--display);font-size:2rem;line-height:1}.plan .pr span{color:var(--muted);font-size:.88rem}
+.plan .per{font-size:.82rem;color:var(--muted);margin-top:-6px}
+.plan .ticks{gap:6px;font-size:.92rem;flex:1}
+.plan .btn{width:100%}
+.plan .plus{font-size:.82rem;font-weight:700;color:var(--prem)}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+th:not(:first-child),td:not(:first-child){text-align:center;width:1%;white-space:nowrap}
+td.vipc,th.vipc{background:var(--prem-bg)}
+tr:last-child td{border-bottom:0}
+.y{color:var(--save);font-weight:700}.n{color:var(--lock)}
+@media (max-width:420px){th,td{padding:8px 6px;font-size:.86rem}th{font-size:.64rem;letter-spacing:.04em}}
+
+.trust{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.who{display:flex;align-items:center;gap:12px}
+.av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.2rem;border:2px solid var(--gold)}
+.who b{display:block;font-size:1.05rem}.who span{display:block;color:var(--muted);font-size:.88rem}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:420px){.facts{grid-template-columns:1fr}}
+.facts div{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:.88rem}
+.facts b{display:block}
+
+.toggle{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.toggle button{flex:1 1 150px;min-width:0;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-weight:700;cursor:pointer;min-height:48px}
+.toggle button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold);color:var(--gold-fg)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.steps li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:9px;background:var(--navy);color:var(--gold);font-weight:700;display:grid;place-items:center;border:1px solid var(--gold)}
+.steps b{display:block}.steps p{margin:2px 0 0;color:var(--muted);font-size:.94rem}
+.qr{background:#fff;color:#13212e;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:360px;margin:12px auto 0}
+.qr img{width:100%;max-width:300px;height:auto;display:block;border-radius:10px}
+.amount{font-family:var(--display);font-size:1.6rem;color:#1a1405;background:#c9a227;border-radius:10px;padding:2px 14px}
+.qr .btn.line{background:#fff;color:#13212e;border-color:#d8d2c4}
+.qr small{color:#56636f;text-align:center}
+.phone{background:var(--prem-bg);color:var(--fg);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:.92rem}
+.phone b{color:var(--prem)}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 14px;margin-bottom:8px}
+summary{cursor:pointer;font-weight:700;padding:12px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;min-height:44px;align-items:center}
+summary::-webkit-details-marker{display:none}summary::after{content:'+';color:var(--muted);font-size:1.3rem;flex:none}details[open] summary::after{content:'−'}
+details p{margin:0 0 12px;color:var(--muted)}
+.fine{color:var(--muted);font-size:.84rem;margin-top:22px}
+footer{margin-top:18px;padding-block:14px 120px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem;display:flex;flex-wrap:wrap;gap:6px 14px}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.12);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sticky .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.sticky .t{flex:1;min-width:0;line-height:1.25}.sticky .t b{display:block;font-size:.98rem}.sticky .t span{font-size:.8rem;color:var(--muted)}
+.sticky .btn{min-height:46px;flex:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* 2/11/2026 improvements */
+.back{display:inline-block;margin:-4px 0 10px;font-size:.84rem;font-weight:600;color:var(--muted);text-decoration:none}
+.perunit{margin-top:6px;font-size:.84rem;color:#ecd27e;font-weight:600}
+.cmp{display:block;text-align:center;margin-top:12px;color:#ecd27e;font-weight:700;font-size:.92rem;text-decoration:none}
+.value.live{margin-top:8px;background:var(--prem-bg)}
+.tel{text-decoration:none;font-weight:700;color:var(--fg)}
+.recv{display:block}.qr .recv b{color:#8a6512}
+.sticky .t span a{color:var(--prem);font-weight:700;display:inline-block;padding:6px 0}
+@media (max-width:680px){.plan.rec{order:-1}}
+.lgh{margin-top:22px;font-size:1.2rem}details.lg p{font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="brand"><span class="mono">LB</span><span><b>Lelong Bid Group</b><small data-i18n="with">with NM Auction</small></span></div>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ms" aria-pressed="false">BM</button></div>
+</div>
+<a class="back" href="https://clientnmauction.lelongbidgroup.com/" data-i18n="back">&larr; Back to the free list</a>
+
+<div class="hero">
+  <div class="eyebrow" data-i18n="eyebrow">Premium members' list</div>
+  <h1 data-i18n="h1">See every auction unit in full, before you bid</h1>
+  <p data-i18n="sub">The free preview shows the price, the market value and how much you could save. Premium shows the rest: the exact address, the bank, every earlier price cut and the winning price calculator.</p>
+  <div class="proof" id="proof" hidden>
+    <div><b class="num" id="nAvail"></b><span data-i18n="pf1">units to bid on</span></div>
+    <div><b class="num" id="nBmv"></b><span data-i18n="pf2">30%+ below market value</span></div>
+    <div id="pfNext" hidden><b class="num" id="nNext"></b><span data-i18n="pf4">auctions in the next 7 days</span></div>
+    <div><b class="num" id="nUpd"></b><span data-i18n="pf3">updated · twice a day</span></div>
+  </div>
+  <div class="priceline"><b>RM50</b><span data-i18n="per">for 30 days · about RM1.67 a day · no auto-renewal</span></div>
+  <div class="perunit" id="perUnit" hidden></div>
+  <div class="cta"><a class="btn gold" href="#pay" data-plan="premium" data-i18n="cta">Unlock Premium · RM50</a><a class="btn ghost" id="askTop" href="https://wa.me/60179473787" target="_blank" rel="noopener" data-i18n="cta_ask">Ask on WhatsApp first</a></div>
+  <a class="cmp" href="#plans" data-i18n="cta_cmp">Compare Free, Premium and VIP &rsaquo;</a>
+</div>
+
+<section>
+  <span class="tag" data-i18n="ex_tag">Example unit</span>
+  <h2 data-i18n="diff_h">See the difference</h2>
+  <p class="lead" data-i18n="diff_lead">The same unit, as the free preview shows it and as a Premium member sees it.</p>
+  <div class="diff">
+    <div class="ex"><h3 data-i18n="ex_free">Free preview</h3>
+      <div class="addr">No. XX-X, Residensi Contoh, 43300 Seri Kembangan, Selangor</div>
+      <dl><dt data-i18n="d_price">Auction price</dt><dd class="num">RM 280,000</dd>
+      <dt data-i18n="d_mv">Market value</dt><dd class="num">RM 400,000</dd>
+      <dt data-i18n="d_bmv">Below market</dt><dd class="num">30%</dd>
+      <dt data-i18n="d_bank">Bank</dt><dd class="lockv" data-i18n="locked2">Premium only</dd>
+      <dt data-i18n="d_hist">Price history</dt><dd class="lockv" data-i18n="locked3">Premium only</dd>
+      <dt data-i18n="d_photo">Photo</dt><dd class="lockv" data-i18n="illus">Illustration</dd></dl>
+    </div>
+    <div class="ex prem"><h3>Premium</h3>
+      <div class="addr">No. 12-3, Residensi Contoh, 43300 Seri Kembangan, Selangor</div>
+      <dl><dt data-i18n="d_price2">Auction price</dt><dd class="num">RM 280,000</dd>
+      <dt data-i18n="d_mv2">Market value</dt><dd class="num">RM 400,000</dd>
+      <dt data-i18n="d_bmv2">Below market</dt><dd class="savev num" data-i18n="save_v">30% · save RM 120,000</dd>
+      <dt data-i18n="d_bank2">Bank</dt><dd>Bank Contoh Berhad</dd>
+      <dt data-i18n="d_hist2">Price history</dt><dd data-i18n="hist_v">cut 3 times since Mar 2026</dd>
+      <dt data-i18n="d_photo2">Photo</dt><dd data-i18n="photo_v">Real unit or building photo</dd></dl>
+    </div>
+  </div>
+  <p class="example" data-i18n="ex_note">Example figures for illustration. Every Premium card shows the real figures for that unit.</p>
+</section>
+
+<section>
+  <h2 data-i18n="get_h">What Premium gives you</h2>
+  <p class="lead" data-i18n="get_lead">Everything you need to judge a unit and act on it, for every unit in the list, updated every day.</p>
+  <div class="groups">
+    <div class="group"><h3><i>1</i><span data-i18n="g1h">Find the right unit</span></h3><ul class="ticks">
+      <li><div><b data-i18n="g1a">Exact address and Google Maps</b><span data-i18n="g1ap">House and unit numbers in full; one tap opens the satellite view.</span></div></li>
+      <li><div><b data-i18n="g1b">Real photos</b><span data-i18n="g1bp">The unit or its building where we have one, instead of an illustration.</span></div></li>
+      <li><div><b data-i18n="g1c">Sort and filter by the biggest discount</b><span data-i18n="g1cp">Put the deepest discounts at the top in one tap.</span></div></li></ul></div>
+    <div class="group"><h3><i>2</i><span data-i18n="g2h">Know what it is worth</span></h3><ul class="ticks">
+      <li><div><b data-i18n="g2a">Winning price calculator</b><span data-i18n="g2ap">Choose a winning price and see the % below market value and the instalment at once.</span></div></li>
+      <li><div><b data-i18n="g2b">Price-cut history</b><span data-i18n="g2bp">Every earlier round, and how many times the bank has cut the price. A unit cut 5 times tells you the bank wants out.</span></div></li>
+      <li><div><b data-i18n="g2c">Bank, completion year and borrower name</b><span data-i18n="g2cp">Who is selling, how old the building is, and the name on the proclamation (name only).</span></div></li></ul></div>
+    <div class="group"><h3><i>3</i><span data-i18n="g3h">Act before others</span></h3><ul class="ticks">
+      <li><div><b data-i18n="g3a">Ask your agent for the proclamation of sale</b><span data-i18n="g3ap">One tap sends the unit to your agent on WhatsApp.</span></div></li>
+      <li><div><b data-i18n="g3b">Auction results of the last 30 days</b><span data-i18n="g3bp">What sold, what had no bidder, what was cancelled.</span></div></li>
+      <li><div><b data-i18n="g3c">Copy the address in one tap</b><span data-i18n="g3cp">For your own checks before you bid.</span></div></li></ul></div>
+  </div>
+  <div class="value" data-i18n="value">Example: a unit worth <b>RM400,000</b> that goes to auction at <b>RM280,000</b> is <b>RM120,000</b> below market value. The free list shows the market value of every unit. Premium gives the exact address, the bank and the price history, so you can act on units like this for <b>RM50</b>.</div>
+  <div class="value live" id="valueLive" hidden></div>
+</section>
+
+<section id="plans">
+  <h2 data-i18n="plans_h">Choose your plan</h2>
+  <p class="lead" data-i18n="plans_lead">Start free. Upgrade when you find units you want to look at closely.</p>
+  <div class="plans">
+    <div class="plan"><h3 data-i18n="pf_h">Free preview</h3><div class="pr"><b>RM0</b></div>
+      <ul class="ticks"><li data-i18n="pf_1">Every unit: type, area, price, auction date</li><li data-i18n="pf_2">Size, tenure, LACA and restrictions</li><li data-i18n="pf_3">Price per sq ft and monthly instalment estimate</li><li data-i18n="pf_4">Search, filters, saved list, compare and share</li><li data-i18n="pf_5">Market value, % below market and savings</li></ul>
+      <a class="btn line sm" href="https://clientnmauction.lelongbidgroup.com/" data-i18n="pf_cta">Open the free preview</a></div>
+    <div class="plan rec"><span class="rib" data-i18n="rec">Recommended</span><h3>Premium</h3><div class="pr"><b>RM50</b><span data-i18n="p30">/ 30 days</span></div><div class="per" data-i18n="pday">about RM1.67 a day</div>
+      <span class="plus" data-i18n="pp_plus">Everything in Free, plus:</span>
+      <ul class="ticks"><li data-i18n="pp_1">Exact address, Google Maps and real photos</li><li data-i18n="pp_2">Winning price calculator with instalment</li><li data-i18n="pp_3">Price-cut history and earlier rounds</li><li data-i18n="pp_4">Bank, completion year, borrower name</li><li data-i18n="pp_5">Proclamation of sale from your agent</li><li data-i18n="pp_6">Auction results of the last 30 days</li></ul>
+      <a class="btn gold" href="#pay" data-plan="premium" data-i18n="pp_cta">Choose Premium · RM50</a></div>
+    <div class="plan vip" id="sip"><span class="rib" data-i18n="forinv">For investors</span><h3>VIP Investor</h3><div class="pr"><b>RM99</b><span data-i18n="p30b">/ 30 days</span></div><div class="per" data-i18n="vday">about RM3.30 a day</div>
+      <span class="plus" data-i18n="pv_plus">Everything in Premium, plus:</span>
+      <ul class="ticks"><li data-i18n="pv_1">12 months of auction results on every unit</li><li data-i18n="pv_2">Investor score 0-100 on every unit, with how it is worked out</li><li data-i18n="pv_3">Sort the whole list by investor score</li></ul>
+      <a class="btn line" href="#pay" data-plan="sip" data-i18n="pv_cta">Choose VIP · RM99</a></div>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="cmp_h">Free, Premium and VIP side by side</h2>
+  <div class="tbl"><table>
+    <thead><tr><th data-i18n="c_f">What you see</th><th data-i18n="c_free">Free</th><th>Premium</th><th class="vipc">VIP</th></tr></thead>
+    <tbody>
+      <tr><td data-i18n="c1">Every unit: type, area, price, auction date</td><td class="y">✓</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c2">Size, tenure, LACA, restrictions</td><td class="y">✓</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c3">Price per sq ft, monthly instalment estimate</td><td class="y">✓</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c4">Search, filters, saved list, compare, share</td><td class="y">✓</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c5">Exact address and Google Maps</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c6">Real photos of the unit or building</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c7">Market value, % below market, savings</td><td class="y">✓</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c8">Sort by the biggest discount</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c9">Price-cut history and earlier rounds</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c10">Bank, completion year, borrower name</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c11">Proclamation of sale from your agent</td><td class="n">—</td><td class="y">✓</td><td class="y vipc">✓</td></tr>
+      <tr><td data-i18n="c12">Auction results (sold, no bidder, cancelled)</td><td class="y" data-i18n="c12f">30 days</td><td class="y" data-i18n="c12p">30 days</td><td class="y vipc" data-i18n="c12v">12 months</td></tr>
+      <tr><td data-i18n="c13">Investor score 0-100 with breakdown</td><td class="n">—</td><td class="n">—</td><td class="y vipc">✓</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2 data-i18n="trust_h">Who is behind the list</h2>
+  <div class="trust">
+    <div class="who"><span class="av">NA</span><div><b>NM Auction</b><span data-i18n="who_line">Lelong Bid Group agent</span><a class="num tel" href="tel:+60179473787">017-9473787</a></div></div>
+    <div class="facts">
+      <div><b data-i18n="f1">Official notices</b><span data-i18n="f1p">From the banks' public auction notices.</span></div>
+      <div><b data-i18n="f2">Checked every day</b><span data-i18n="f2p">New units, new dates and results, twice a day.</span></div>
+      <div><b data-i18n="f3">No auto-renewal</b><span data-i18n="f3p">You pay again only if you want more time.</span></div>
+      <div><b data-i18n="f4">Personal code</b><span data-i18n="f4p">Sent on WhatsApp, usually the same day.</span></div>
+    </div>
+    <a class="btn wa sm" id="askBtn" href="https://wa.me/60179473787" target="_blank" rel="noopener" data-i18n="ask">Ask a question on WhatsApp first</a>
+  </div>
+</section>
+
+<section id="pay">
+  <h2 data-i18n="pay_h">How to subscribe</h2>
+  <p class="lead" data-i18n="pay_lead">Three steps. Your code is sent once the payment is confirmed, usually the same day.</p>
+  <div class="toggle" role="group" aria-label="Plan"><button type="button" data-plan="premium" aria-pressed="true" data-i18n="t_p">Premium · RM50</button><button type="button" data-plan="sip" aria-pressed="false" data-i18n="t_s">VIP Investor · RM99</button></div>
+  <ol class="steps">
+    <li><div><b data-i18n="s1">Pay with DuitNow QR</b><p data-i18n="s1p">Any Malaysian banking app works. Pay the amount shown on the QR card.</p></div></li>
+    <li><div><b data-i18n="s2">Send the receipt on WhatsApp</b><p data-i18n="s2p">Tap the green button. The message is ready; attach your receipt screenshot.</p></div></li>
+    <li><div><b data-i18n="s3">Receive your personal code</b><p data-i18n="s3p">Open the Premium site with it. The code works for 30 days per payment.</p></div></li>
+  </ol>
+  <div class="qr"><div class="amount num" id="amount">RM50</div><img src="../img/qr-maybank.png" width="512" height="580" loading="lazy" decoding="async" alt="DuitNow QR code for payment to Eden Assets & Property Solutions" data-alt-ms="Kod QR DuitNow untuk bayaran kepada Eden Assets & Property Solutions" data-alt-en="DuitNow QR code for payment to Eden Assets & Property Solutions">
+    <a class="btn line sm" href="../img/qr-maybank.png" download="DuitNow-QR.png" data-i18n="saveqr">Save the QR code</a><small data-i18n="qr_c">Scan with any Malaysian banking app · Eden Assets & Property Solutions</small><small class="recv" data-i18n="recv">Your bank app shows the recipient name <b>Eden Assets & Property Solutions</b> before you confirm. Keep the receipt.</small></div>
+  <div class="phone" data-i18n="phone"><b>On this phone?</b> You cannot scan your own screen. Tap <b>Save the QR code</b>, open your bank app, choose <b>Scan</b>, then pick the QR picture from your gallery.</div>
+  <div class="cta"><a class="btn wa" id="waBtn" href="https://wa.me/60179473787?text=Hi%20NM%20Auction%2C%20I%20have%20paid%20RM50%20for%20the%2030-day%20premium%20auction%20list.%20Here%20is%20my%20receipt." target="_blank" rel="noopener" data-i18n="wa">Send receipt on WhatsApp</a></div>
+</section>
+
+<section>
+  <h2 data-i18n="faq_h">Questions</h2>
+  <details><summary data-i18n="q1">Is RM50 a one-time payment?</summary><p data-i18n="a1">RM50 gives you 30 days. Nothing renews by itself. To continue, pay again for the next 30 days and the same code is extended. You can also pay 2 to 12 months at once at the same rate, for example 3 months RM150 or 12 months RM600.</p></details>
+  <details><summary data-i18n="q6">Premium or VIP: which one do I need?</summary><p data-i18n="a6">Premium shows everything you need to judge a unit: address, market value, bank and price history. VIP adds 12 months of auction results and the investor score, for people who buy to invest. You can start with Premium and upgrade later.</p></details>
+  <details><summary data-i18n="q7">How fast do I get my code?</summary><p data-i18n="a7">Usually the same day, once the payment is confirmed. It comes on WhatsApp with the link.</p></details>
+  <details><summary data-i18n="q8">Can I try before paying?</summary><p data-i18n="a8">Yes. The free preview shows every unit with type, area, size, price and auction date. Premium unlocks the details on the same list.</p></details>
+  <details><summary data-i18n="q3">Where does the information come from?</summary><p data-i18n="a3">From the public auction notices (proclamations of sale) of the banks, collected and checked every day. Always confirm the details with the auctioneer before you bid.</p></details>
+  <details><summary data-i18n="q4">Can I share my code?</summary><p data-i18n="a4">The code is personal, for your own phone and family. A code that is passed around can be switched off.</p></details>
+  <details><summary data-i18n="q9">Can I get a refund?</summary><p data-i18n="a9">Payments are not refundable once your code is activated, unless the page is unavailable for more than 7 days in a row. Try the free preview first.</p></details>
+  <details><summary data-i18n="q10">Is the data accurate and lawful to use?</summary><p data-i18n="a10">The details come from public auction notices and are refreshed twice a day, but a bank can change a date or price at any time. Always confirm with the Proclamation of Sale and the auctioneer before you bid. The list is for your personal use only.</p></details>
+  <details><summary data-i18n="q5">Who is behind the list?</summary><p data-i18n="a5">NM Auction. Questions before you pay? WhatsApp 017-9473787.</p></details>
+</section>
+
+<p class="fine" data-i18n="fine">The list is a reference to help you find auction properties. It is not legal or financial advice, and NM Auction is not the auctioneer or the bank. Auction dates, reserve prices and conditions can change; always check the proclamation of sale and the auctioneer's announcement before bidding.</p>
+<h2 class="lgh" data-i18n="lg_h">Privacy, terms and disclaimer</h2>
+<details class="lg"><summary data-i18n="lgp_t">Privacy notice</summary><p data-i18n="lgp">We keep your name and WhatsApp number only to send your code and answer you, and your choices on this device. Google Analytics runs only after you agree on the list page (tapping OK or continuing to browse). Ask for access, correction or deletion of your data on WhatsApp 017-9473787 (Personal Data Protection Act 2010).</p></details>
+<details class="lg"><summary data-i18n="lgt_t">Terms of use</summary><p data-i18n="lgt">The list is for your personal use. Codes are personal; a shared code can be switched off. Payments are not refundable once a code is activated, unless the page is down for more than 7 days in a row. NM Auction is not the auctioneer, bank or lawyer of any unit.</p></details>
+<details class="lg"><summary data-i18n="lgd_t">Disclaimer</summary><p data-i18n="lgd">Details come from public auction notices and can change without notice. Market value, discount, investor score and instalment figures are estimates, not advice. Confirm everything with the Proclamation of Sale and the auctioneer before you bid.</p></details>
+<p class="fine" data-i18n="lg_full">The full notices are in the footer of the list page.</p>
+<footer><span>NM Auction</span><span class="num">017-9473787</span><a href="https://nmauction.lelongbidgroup.com/" data-i18n="prem_site">Premium site</a><a href="https://clientnmauction.lelongbidgroup.com/" data-i18n="trial_site">Free preview</a></footer>
+</div>
+
+<div class="sticky" id="stickyCta"><div class="in"><div class="t"><b id="stT">Premium · RM50</b><span><span data-i18n="st_s">30 days · no auto-renewal</span> · <a href="#plans" data-i18n="st_sw">change plan</a></span></div><a class="btn gold" href="#pay" id="stBtn">Unlock · RM50</a></div></div>
+
+<script>
+var KP='clientnmauction.';
+var I18N={en:{pu_lt:'That is less than 1 sen per unit in the list today',pu_ab:'About {x} sen per unit in the list today',live_v:'Today the list has <b>{n}</b> units at 30% or more below market value.',st_cta:'Unlock'},ms:{
+with:'bersama NM Auction',eyebrow:'Senarai ahli Premium',h1:'Lihat setiap unit lelong dengan lengkap, sebelum anda membida',
+sub:'Pratonton percuma tunjuk harga, nilai pasaran dan berapa anda boleh jimat. Premium tunjuk selebihnya: alamat tepat, bank, setiap kali harga diturunkan dan kiraan harga menang.',
+pf1:'unit boleh dibida',pf2:'unit 30%+ bawah nilai pasaran',pf3:'dikemas kini · 2 kali sehari',pf4:'lelong dalam 7 hari',back:'&larr; Kembali ke senarai percuma',cta_ask:'Tanya dulu di WhatsApp',recv:'Aplikasi bank anda memaparkan nama penerima <b>Eden Assets & Property Solutions</b> sebelum anda sahkan. Simpan resit.',st_sw:'tukar pelan',pu_lt:'Itu kurang 1 sen bagi setiap unit dalam senarai hari ini',pu_ab:'Kira-kira {x} sen bagi setiap unit dalam senarai hari ini',live_v:'Hari ini senarai ada <b>{n}</b> unit 30% atau lebih bawah nilai pasaran.',
+per:'untuk 30 hari · kira-kira RM1.67 sehari · tiada pembaharuan automatik',cta:'Buka Premium · RM50',cta_cmp:'Banding Free, Premium dan VIP &rsaquo;',
+ex_tag:'Contoh unit',diff_h:'Lihat bezanya',diff_lead:'Unit yang sama, seperti dalam pratonton percuma dan seperti yang dilihat ahli Premium.',
+ex_free:'Pratonton percuma',d_price:'Harga lelong',d_mv:'Nilai pasaran',d_bmv:'Bawah nilai pasaran',d_bank:'Bank',d_hist:'Sejarah harga',d_photo:'Gambar',
+locked:'Premium sahaja',locked2:'Premium sahaja',locked3:'Premium sahaja',illus:'Gambar hiasan',
+d_price2:'Harga lelong',d_mv2:'Nilai pasaran',d_bmv2:'Bawah nilai pasaran',d_bank2:'Bank',d_hist2:'Sejarah harga',d_photo2:'Gambar',
+save_v:'30% · jimat RM 120,000',hist_v:'turun 3 kali sejak Mac 2026',photo_v:'Gambar sebenar unit atau bangunan',
+ex_note:'Angka contoh untuk gambaran. Setiap kad Premium menunjukkan angka sebenar unit itu.',
+get_h:'Apa yang Premium beri',get_lead:'Semua yang anda perlu untuk menilai sesuatu unit dan bertindak, untuk setiap unit dalam senarai, dikemas kini setiap hari.',
+g1h:'Cari unit yang betul',g1a:'Alamat tepat dan Google Maps',g1ap:'Nombor rumah dan unit penuh; satu tekan membuka paparan satelit.',
+g1b:'Gambar sebenar',g1bp:'Unit itu atau bangunannya jika ada, bukan gambar hiasan.',g1c:'Susun dan tapis ikut diskaun terbesar',g1cp:'Diskaun paling besar di atas dengan satu tekan.',
+g2h:'Tahu berapa nilainya',g2a:'Kiraan harga menang',g2ap:'Pilih harga menang dan terus lihat % bawah nilai pasaran serta ansuran.',
+g2b:'Sejarah turun harga',g2bp:'Setiap pusingan terdahulu, dan berapa kali bank menurunkan harga. Unit yang turun 5 kali menunjukkan bank mahu cepat lepas.',
+g2c:'Bank, tahun siap dan nama peminjam',g2cp:'Siapa yang menjual, berapa usia bangunan, dan nama pada perisytiharan jualan (nama sahaja).',
+g3h:'Bertindak lebih awal',g3a:'Minta perisytiharan jualan (POS) daripada ejen',g3ap:'Satu tekan menghantar unit itu kepada ejen anda di WhatsApp.',
+g3b:'Keputusan lelong 30 hari',g3bp:'Apa yang terjual, apa yang tiada pembida, apa yang dibatalkan.',g3c:'Salin alamat dengan satu tekan',g3cp:'Untuk semakan sendiri sebelum membida.',
+value:'Contoh: unit bernilai <b>RM400,000</b> yang dilelong pada <b>RM280,000</b> ialah <b>RM120,000</b> di bawah nilai pasaran. Senarai percuma menunjukkan nilai pasaran setiap unit. Premium memberi alamat tepat, bank dan sejarah harga, supaya anda boleh bertindak ke atas unit seperti ini dengan <b>RM50</b>.',
+plans_h:'Pilih pelan anda',plans_lead:'Mula percuma. Naik taraf bila anda jumpa unit yang mahu dilihat dengan teliti.',
+pf_h:'Pratonton percuma',pf_1:'Setiap unit: jenis, kawasan, harga, tarikh lelong',pf_2:'Saiz, pegangan, LACA dan sekatan',pf_3:'Harga sekaki dan anggaran ansuran bulanan',pf_4:'Carian, penapis, senarai simpanan, banding dan kongsi',pf_5:'Nilai pasaran, % bawah nilai pasaran dan jimat',pf_cta:'Buka pratonton percuma',
+rec:'Disyorkan',p30:'/ 30 hari',p30b:'/ 30 hari',pday:'kira-kira RM1.67 sehari',vday:'kira-kira RM3.30 sehari',forinv:'Untuk pelabur',
+pp_plus:'Semua dalam Free, tambah:',pp_1:'Alamat tepat, Google Maps dan gambar sebenar',pp_2:'Kiraan harga menang dengan ansuran',pp_3:'Sejarah turun harga dan pusingan terdahulu',pp_4:'Bank, tahun siap, nama peminjam',pp_5:'Perisytiharan jualan (POS) daripada ejen',pp_6:'Keputusan lelong 30 hari',pp_cta:'Pilih Premium · RM50',
+pv_plus:'Semua dalam Premium, tambah:',pv_1:'Keputusan lelong 12 bulan untuk setiap unit',pv_2:'Skor pelabur 0-100 setiap unit, dengan cara ia dikira',pv_3:'Susun seluruh senarai ikut skor pelabur',pv_cta:'Pilih VIP · RM99',
+cmp_h:'Free, Premium dan VIP sebelah-menyebelah',c_f:'Apa yang anda nampak',c_free:'Free',
+c1:'Setiap unit: jenis, kawasan, harga, tarikh lelong',c2:'Saiz, pegangan, LACA, sekatan',c3:'Harga sekaki, anggaran ansuran bulanan',c4:'Carian, penapis, senarai simpanan, banding, kongsi',
+c5:'Alamat tepat dan Google Maps',c6:'Gambar sebenar unit atau bangunan',c7:'Nilai pasaran, % bawah nilai pasaran, jimat',c8:'Susun ikut diskaun terbesar',
+c9:'Sejarah turun harga dan pusingan terdahulu',c10:'Bank, tahun siap, nama peminjam',c11:'Perisytiharan jualan (POS) daripada ejen',
+c12:'Keputusan lelong (terjual, tiada pembida, dibatalkan)',c12f:'30 hari',c12p:'30 hari',c12v:'12 bulan',c13:'Skor pelabur 0-100 dengan pecahan',
+trust_h:'Siapa di sebalik senarai ini',who_line:'Ejen Lelong Bid Group',f1:'Notis rasmi',f1p:'Daripada notis lelong awam bank.',f2:'Disemak setiap hari',f2p:'Unit baharu, tarikh baharu dan keputusan, dua kali sehari.',
+f3:'Tiada pembaharuan automatik',f3p:'Bayar lagi hanya jika mahu tambah masa.',f4:'Kod peribadi',f4p:'Dihantar di WhatsApp, biasanya pada hari yang sama.',ask:'Tanya dulu di WhatsApp',
+pay_h:'Cara melanggan',pay_lead:'Tiga langkah. Kod dihantar selepas bayaran disahkan, biasanya pada hari yang sama.',t_p:'Premium · RM50',t_s:'VIP Investor · RM99',
+s1:'Bayar dengan QR DuitNow',s1p:'Mana-mana aplikasi bank Malaysia boleh digunakan. Bayar jumlah yang tertera pada kad QR.',
+s2:'Hantar resit di WhatsApp',s2p:'Tekan butang hijau. Mesej sudah sedia; lampirkan tangkapan skrin resit.',s3:'Terima kod peribadi',s3p:'Buka laman Premium dengannya. Kod sah 30 hari untuk setiap bayaran.',
+saveqr:'Simpan kod QR',qr_c:'Imbas dengan mana-mana aplikasi bank Malaysia · Eden Assets & Property Solutions',
+phone:'<b>Guna telefon ini?</b> Anda tidak boleh imbas skrin sendiri. Tekan <b>Simpan kod QR</b>, buka aplikasi bank, pilih <b>Scan</b>, kemudian pilih gambar QR dari galeri.',
+wa:'Hantar resit di WhatsApp',faq_h:'Soalan lazim',
+q9:'Boleh dapat bayaran balik?',a9:'Bayaran tidak dikembalikan setelah kod diaktifkan, kecuali laman tidak dapat diakses lebih 7 hari berturut-turut. Cuba pratonton percuma dahulu.',q10:'Adakah data ini tepat dan sah digunakan?',a10:'Butiran datang daripada notis lelong awam dan dikemas kini dua kali sehari, tetapi bank boleh mengubah tarikh atau harga bila-bila masa. Sentiasa sahkan dengan Perisytiharan Jualan dan pelelong sebelum membida. Senarai ini untuk kegunaan peribadi anda sahaja.',lg_h:'Privasi, terma dan penafian',lgp_t:'Notis privasi',lgp:'Kami simpan nama dan nombor WhatsApp anda hanya untuk menghantar kod dan membalas anda, serta pilihan anda pada peranti ini. Google Analytics berjalan hanya selepas anda bersetuju di laman senarai (tekan OK atau terus melayari). Minta akses, pembetulan atau pemadaman data anda di WhatsApp 017-9473787 (Akta Perlindungan Data Peribadi 2010).',lgt_t:'Terma penggunaan',lgt:'Senarai ini untuk kegunaan peribadi anda. Kod adalah peribadi; kod yang dikongsi boleh dimatikan. Bayaran tidak dikembalikan setelah kod diaktifkan, kecuali laman tidak dapat diakses lebih 7 hari berturut-turut. NM Auction bukan pelelong, bank atau peguam bagi mana-mana unit.',lgd_t:'Penafian',lgd:'Butiran datang daripada notis lelong awam dan boleh berubah tanpa notis. Nilai pasaran, diskaun, skor pelabur dan ansuran adalah anggaran, bukan nasihat. Sahkan semuanya dengan Perisytiharan Jualan dan pelelong sebelum membida.',lg_full:'Notis penuh ada di footer laman senarai.',
+q1:'Adakah RM50 bayaran sekali sahaja?',a1:'RM50 memberi anda 30 hari. Tiada yang diperbaharui sendiri. Untuk teruskan, bayar lagi untuk 30 hari seterusnya dan kod yang sama disambung. Anda juga boleh bayar 2 hingga 12 bulan sekali gus pada kadar sama, contohnya 3 bulan RM150 atau 12 bulan RM600.',
+q6:'Premium atau VIP: yang mana saya perlu?',a6:'Premium menunjukkan semua yang anda perlu untuk menilai unit: alamat, nilai pasaran, bank dan sejarah harga. VIP menambah keputusan lelong 12 bulan dan skor pelabur, untuk yang membeli sebagai pelaburan. Anda boleh mula dengan Premium dan naik taraf kemudian.',
+q7:'Berapa cepat saya dapat kod?',a7:'Biasanya pada hari yang sama, selepas bayaran disahkan. Ia dihantar di WhatsApp bersama pautan.',
+q8:'Boleh saya cuba dulu sebelum bayar?',a8:'Boleh. Pratonton percuma menunjukkan setiap unit dengan jenis, kawasan, saiz, harga dan tarikh lelong. Premium membuka butirannya pada senarai yang sama.',
+q3:'Dari mana maklumat ini datang?',a3:'Daripada notis lelong awam (perisytiharan jualan) bank, dikumpul dan disemak setiap hari. Sentiasa sahkan butiran dengan pelelong sebelum membida.',
+q4:'Boleh saya kongsi kod saya?',a4:'Kod itu peribadi, untuk telefon anda dan keluarga sendiri. Kod yang diedarkan boleh dimatikan.',
+q5:'Siapa di sebalik senarai ini?',a5:'NM Auction. Ada soalan sebelum bayar? WhatsApp 017-9473787.',
+fine:'Senarai ini rujukan untuk membantu anda mencari hartanah lelong. Ia bukan nasihat undang-undang atau kewangan, dan NM Auction bukan pelelong atau bank. Tarikh lelong, harga rizab dan syarat boleh berubah; sentiasa semak perisytiharan jualan dan pengumuman pelelong sebelum membida.',
+prem_site:'Laman Premium',trial_site:'Pratonton percuma',st_s:'30 hari · tiada pembaharuan automatik',st_cta:'Buka'}};
+var PLAN='premium',PRICES={premium:'50',sip:'99'},PLAN_NAME={premium:'Premium',sip:'VIP Investor'};
+var WA={en:{premium:'Hi NM Auction, I have paid RM50 for the 30-day Premium auction list. Here is my receipt.',sip:'Hi NM Auction, I have paid RM99 for the 30-day VIP Investor Plan. Here is my receipt.'},
+ ms:{premium:'Hi NM Auction, saya sudah bayar RM50 untuk senarai lelong Premium 30 hari. Ini resit saya.',sip:'Hi NM Auction, saya sudah bayar RM99 untuk VIP Investor Plan 30 hari. Ini resit saya.'}};
+var ASK={en:'Hi NM Auction, I have a question about the Premium auction list.',ms:'Hi NM Auction, saya ada soalan tentang senarai lelong Premium.'};
+var MON={en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],ms:['Jan','Feb','Mac','Apr','Mei','Jun','Jul','Ogo','Sep','Okt','Nov','Dis']};
+var STATS=null;
+function $(id){return document.getElementById(id)}
+function lang(){return document.documentElement.lang==='ms'?'ms':'en'}
+function T(k){var l=lang();return (l==='ms'&&I18N.ms[k])?I18N.ms[k]:(EN[k]||I18N.en[k]||k)}
+function waHref(){$('waBtn').href='https://wa.me/60179473787?text='+encodeURIComponent(WA[lang()][PLAN]);var a='https://wa.me/60179473787?text='+encodeURIComponent(ASK[lang()]);$('askBtn').href=a;$('askTop').href=a}
+function setPlan(p){PLAN=p==='sip'?'sip':'premium';
+ document.querySelectorAll('.toggle button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-plan')===PLAN?'true':'false')});
+ $('amount').textContent='RM'+PRICES[PLAN];$('stT').textContent=PLAN_NAME[PLAN]+' · RM'+PRICES[PLAN];$('stBtn').textContent=T('st_cta')+' · RM'+PRICES[PLAN];waHref()}
+document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){setPlan(b.getAttribute('data-plan'))})});
+function fillStats(){if(!STATS)return;var d=new Date(String(STATS.updated||'')+'T00:00:00');
+ $('nAvail').textContent=Number(STATS.available).toLocaleString('en-MY');$('nBmv').textContent=Number(STATS.bmv30).toLocaleString('en-MY');
+ $('nUpd').textContent=isNaN(d)?'—':d.getDate()+' '+MON[lang()][d.getMonth()];$('proof').hidden=false;
+ if(Number(STATS.next7)>0){$('nNext').textContent=Number(STATS.next7).toLocaleString('en-MY');$('pfNext').hidden=false}
+ var pu=Number(PRICES.premium)/Number(STATS.available||1);$('perUnit').innerHTML=pu<0.01?T('pu_lt'):T('pu_ab').replace('{x}',String(Math.ceil(pu*100)));$('perUnit').hidden=false;
+ if(Number(STATS.bmv30)>0){$('valueLive').innerHTML=T('live_v').replace('{n}',Number(STATS.bmv30).toLocaleString('en-MY'));$('valueLive').hidden=false}}
+var EN={};document.querySelectorAll('[data-i18n]').forEach(function(e){EN[e.getAttribute('data-i18n')]=e.innerHTML});
+function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-alt-ms]').forEach(function(e){e.alt=e.getAttribute(l==='ms'?'data-alt-ms':'data-alt-en')});
+ document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');e.innerHTML=l==='ms'&&I18N.ms[k]?I18N.ms[k]:EN[k]});
+ document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l?'true':'false')});
+ setPlan(PLAN);fillStats();try{localStorage.setItem(KP+'lang',l)}catch(e){}}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+/* the language follows the phone the first time (Malay phones get BM), then the visitor's own choice */
+var l0='en';try{var s=localStorage.getItem(KP+'lang');l0=s==='ms'||s==='en'?s:(/^(ms|my)/i.test(navigator.language||'')?'ms':'en');
+ var t=localStorage.getItem('clientnmauction.theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
+setLang(l0);if(location.hash==='#sip')setPlan('sip');
+/* today's numbers: trial/stats.json on the main site, written by trial_data.py at every update; without it the tiles stay hidden */
+try{fetch('https://lelongbidgroup.com/trial/stats.json?v='+Date.now()).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.available){STATS=j;fillStats()}}).catch(function(){})}catch(e){}
+/* the bottom bar steps aside while the payment section (QR + WhatsApp) is on screen */
+if(window.IntersectionObserver){var st=$('stickyCta');new IntersectionObserver(function(es){es.forEach(function(e){st.hidden=e.isIntersecting})},{threshold:0.12}).observe($('pay'))}
+</script>
+</body>
+</html>
